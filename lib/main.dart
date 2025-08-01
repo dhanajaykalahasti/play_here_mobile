@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/auth/login_screen.dart';
+import 'screens/home/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,13 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'PLAYhERe',
+      title: 'PLAY HERE',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Colors.black,
-        textTheme: ThemeData.dark().textTheme.apply(fontFamily: 'Poppins'),
+        scaffoldBackgroundColor: Color(0xFFE6E6FA),
       ),
-      home: LoginScreen(), // ✅ Uses your screen
+      home: HomePage(),
     );
   }
 }
