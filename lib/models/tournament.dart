@@ -9,7 +9,7 @@ class Tournament {
   final String prizePool;
   final List<String> sports;
 
-  Tournament({
+  const Tournament({
     required this.id,
     required this.name,
     required this.location,

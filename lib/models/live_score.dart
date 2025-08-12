@@ -10,7 +10,7 @@ class LiveScore {
   final String imageUrl;
   final String matchType; // 'international', 'national', 'local'
 
-  LiveScore({
+  const LiveScore({
     required this.id,
     required this.team1,
     required this.team2,

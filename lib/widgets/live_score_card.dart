@@ -38,7 +38,7 @@ class LiveScoreCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 280,
+        width: 260,
         margin: EdgeInsets.only(right: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
@@ -57,10 +57,11 @@ class LiveScoreCard extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               // Header with match type
               Container(
-                height: 40,
+                height: 36,
                 decoration: BoxDecoration(
                   color: _getMatchTypeColor(),
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
@@ -76,15 +77,17 @@ class LiveScoreCard extends StatelessWidget {
                   ),
                 ),
               ),
-              // Score section
+              // Content area with dark background
               Container(
-                height: 100,
                 decoration: BoxDecoration(
-                  color: Colors.grey[50],
+                  color: Color(0xFF1E293B), // Dark background
+                  borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(12),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,9 +98,10 @@ class LiveScoreCard extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF1E293B),
+                                color: Colors.white, // White text
                               ),
-                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           Text(
@@ -105,7 +109,7 @@ class LiveScoreCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF64748B),
+                              color: Colors.white70, // Light gray text
                             ),
                           ),
                           Expanded(
@@ -114,14 +118,16 @@ class LiveScoreCard extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF1E293B),
+                                color: Colors.white, // White text
                               ),
-                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.end,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 8),
+                      SizedBox(height: 6),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -131,7 +137,7 @@ class LiveScoreCard extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: _getMatchTypeColor(),
+                                color: _getMatchTypeColor(), // Match type color
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -139,7 +145,7 @@ class LiveScoreCard extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                             decoration: BoxDecoration(
-                              color: Colors.red[50],
+                              color: Colors.red[50]?.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
@@ -157,52 +163,44 @@ class LiveScoreCard extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: _getMatchTypeColor(),
+                                color: _getMatchTypeColor(), // Match type color
                               ),
                               textAlign: TextAlign.center,
                             ),
                           ),
                         ],
                       ),
+                      SizedBox(height: 6),
+                      Text(
+                        liveScore.tournament,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white, // White text
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(height: 2),
+                      Row(
+                        children: [
+                          Icon(Icons.location_on, size: 12, color: Colors.white70),
+                          SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              liveScore.location,
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.white70, // Light gray text
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ),
-              ),
-              // Footer
-              Padding(
-                padding: EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      liveScore.tournament,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF1E293B),
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(height: 4),
-                    Row(
-                      children: [
-                        Icon(Icons.location_on, size: 12, color: Color(0xFF64748B)),
-                        SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            liveScore.location,
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: Color(0xFF64748B),
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
                 ),
               ),
             ],

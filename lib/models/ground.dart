@@ -8,7 +8,7 @@ class Ground {
   final double price;
   final List<String> sports;
 
-  Ground({
+  const Ground({
     required this.id,
     required this.name,
     required this.location,
